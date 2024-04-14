@@ -8,28 +8,28 @@ SECRET_KEY = 'django-insecure-f9)dpxx%bs5e&yl@qvd^9k4not-u-8kepz+tuuamegacg9((uo
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'monkfish-app-nvvs7.ondigitalocean.app'] 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'orca-app-mjl8a.ondigitalocean.app'] 
 
 
 CORS_ALLOWED_ORIGINS = [
     "https://localhost:5173",
     "http://localhost:8080",
     "https://localhost:8080",
-    'https://monkfish-app-nvvs7.ondigitalocean.app',
+    'https://orca-app-mjl8a.ondigitalocean.app/',
 ] 
 
 CSRF_ALLOWED_ORIGINS = [
     "https://localhost:5173",
     "http://localhost:8080",
     "https://localhost:8080",
-    'https://monkfish-app-nvvs7.ondigitalocean.app',
+    "https://orca-app-mjl8a.ondigitalocean.app/",
 ] 
 
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:5173",
     "http://localhost:8080",
     "https://localhost:8080",
-    'https://monkfish-app-nvvs7.ondigitalocean.app',
+    'https://orca-app-mjl8a.ondigitalocean.app/',
 ] 
 
 CSRF_COOKIE_HTTPONLY = False  
