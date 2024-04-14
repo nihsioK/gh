@@ -3,7 +3,7 @@ from django.db import models
     
 class Partner(models.Model):
     title = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
+    address = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100)
     card = models.CharField(max_length=100)
     bank = models.CharField(max_length=100)
