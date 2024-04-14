@@ -4,3 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Partner)
 admin.site.register(BankCashback)
+admin.site.register(Cards)

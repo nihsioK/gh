@@ -25,3 +25,10 @@ class BankCashback(models.Model):
 
     def __str__(self):
         return self.bank
+    
+class Cards(models.Model):
+    bank = models.CharField(max_length=100)
+    card = models.CharField(max_length=100)
+    owner = models.ForeignKey('auth.User', related_name='cards', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title

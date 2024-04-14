@@ -1,8 +1,9 @@
 from rest_framework import viewsets
-from .models import Partner, BankCashback
-from .serializers import PartnerSerializer, BankCashbackSerializer
+from .models import Partner, BankCashback, Cards
+from .serializers import PartnerSerializer, BankCashbackSerializer, CardsSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 class PartnerViewSet(viewsets.ModelViewSet):
     queryset = Partner.objects.all()
@@ -34,3 +35,11 @@ class BankCashbackViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
+
+class CardsViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Cards.objects.all()
+    serializer_class = CardsSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)  # Automatically set the owner to the current user
