@@ -94,10 +94,16 @@ class CategorySearchView(APIView):
         return Response(result)
 
 
-@action(methods=['post'])
-def chat(request):
-    user_prompt = request.data.get('user_prompt')
-    response = get_json_api(user_prompt)
-    return Response(response)
+class OpenAIChatView(APIView):
+    def post(self, request, *args, **kwargs):
+        user_prompt = request.data.get('prompt')
+        if not user_prompt:
+            return Response({'error': 'No prompt provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            response_data = get_json_api(user_prompt)
+            return Response(response_data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
