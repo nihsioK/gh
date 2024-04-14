@@ -15,21 +15,21 @@ CORS_ALLOWED_ORIGINS = [
     "https://localhost:5173",
     "http://localhost:8080",
     "https://localhost:8080",
-    'https://orca-app-mjl8a.ondigitalocean.app/',
+    'https://orca-app-mjl8a.ondigitalocean.app',
 ] 
 
 CSRF_ALLOWED_ORIGINS = [
     "https://localhost:5173",
     "http://localhost:8080",
     "https://localhost:8080",
-    "https://orca-app-mjl8a.ondigitalocean.app/",
+    "https://orca-app-mjl8a.ondigitalocean.app",
 ] 
 
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:5173",
     "http://localhost:8080",
     "https://localhost:8080",
-    'https://orca-app-mjl8a.ondigitalocean.app/',
+    'https://orca-app-mjl8a.ondigitalocean.app',
 ] 
 
 CSRF_COOKIE_HTTPONLY = False  
