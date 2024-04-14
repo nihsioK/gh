@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+staticfiles/
+cert.pem
+key.pem
+.env
