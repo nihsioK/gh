@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
+from rest_framework.views import APIView
 
 # Custom Pagination Class
 class SmallSetPagination(PageNumberPagination):
@@ -65,3 +66,29 @@ class CardsViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+class CategorySearchView(APIView):
+
+    def get(self, request):
+        # Retrieve the 'main_category' from query parameters
+        main_category = request.query_params.get('main_category', None)
+        
+        if not main_category:
+            return Response({"error": "Main category parameter is required."}, status=400)
+
+        # Filter Partner and BankCashback by 'main_category'
+        partners = Partner.objects.filter(main_category=main_category)
+        bankcashbacks = BankCashback.objects.filter(main_category=main_category)
+
+        # Serialize the data
+        partner_serializer = PartnerSerializer(partners, many=True)
+        bankcashback_serializer = BankCashbackSerializer(bankcashbacks, many=True)
+
+        # Combine the results
+        result = {
+            'partners': partner_serializer.data,
+            'bank_cashbacks': bankcashback_serializer.data
+        }
+
+        return Response(result)
+
