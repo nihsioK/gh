@@ -5,6 +5,7 @@ from .serializers import PartnerSerializer, BankCashbackSerializer, CardsSeriali
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 
 # Custom Pagination Class
 class SmallSetPagination(PageNumberPagination):
@@ -27,6 +28,12 @@ class PartnerViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             return super(PartnerViewSet, self).create(request, *args, **kwargs)
+        
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        Partner.objects.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 
 class BankCashbackViewSet(viewsets.ModelViewSet):
     queryset = BankCashback.objects.all()
@@ -42,6 +49,13 @@ class BankCashbackViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             return super(BankCashbackViewSet, self).create(request, *args, **kwargs)
+        
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        Cards.objects.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+        
+ 
 
 class CardsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
