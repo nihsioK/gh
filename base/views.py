@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.views import APIView
+from .chat import get_json as get_json_api
 
 # Custom Pagination Class
 class SmallSetPagination(PageNumberPagination):
@@ -91,4 +92,12 @@ class CategorySearchView(APIView):
         }
 
         return Response(result)
+
+
+@action(methods=['post'])
+def chat(request):
+    user_prompt = request.data.get('user_prompt')
+    response = get_json_api(user_prompt)
+    return Response(response)
+
 
